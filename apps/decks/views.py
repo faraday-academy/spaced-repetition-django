@@ -1,6 +1,9 @@
+from datetime import date
+
 from django.shortcuts import render
 from rest_framework import viewsets, serializers
 from rest_framework.response import Response
+
 from .models import Deck
 from apps.cards.models import Card
 from apps.cards.views import CardsSerializer
@@ -21,5 +24,14 @@ class DecksViewSet(viewsets.ModelViewSet):
 class CardsViewSet(viewsets.ViewSet):
     def list(self, request, decks_pk):
         queryset = Card.objects.filter(deck=decks_pk)
+        serializer = CardsSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+
+class TodaysCardsViewSet(viewsets.ViewSet):
+    def list(self, request, decks_pk):
+        today = date.today()
+        queryset = Card.objects.filter(deck=decks_pk,
+                        next_review_at__day=today.day)
         serializer = CardsSerializer(queryset, many=True)
         return Response(serializer.data)
