@@ -9,8 +9,10 @@ license = "MIT"
 python = "^3.6"
 djangorestframework = "^3.12.2"
 psycopg2 = "^2.8.6"
+drf-nested-routers = "^0.92.5"
 
 [tool.poetry.dev-dependencies]
+flake8 = "^3.8.4"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

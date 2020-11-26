@@ -1,8 +1,9 @@
 from django.db import models
 from apps.decks.models import Deck
+from apps.utils.models import Timestamps
 
 
-class Card(models.Model):
+class Card(Timestamps):
     deck = models.ForeignKey(Deck, on_delete=models.CASCADE)
     question = models.TextField()
     answer = models.TextField()
