@@ -30,8 +30,14 @@ class CardsViewSet(viewsets.ViewSet):
 
 class TodaysCardsViewSet(viewsets.ViewSet):
     def list(self, request, decks_pk):
+        """
+        Users can get the list of cards from a deck that they
+        need to study today.
+        This should include cards from previous dates that were
+        not studied yet.
+        """
         today = date.today()
         queryset = Card.objects.filter(deck=decks_pk,
-                        next_review_at__day=today.day)
+                        next_review_at__lt=today)
         serializer = CardsSerializer(queryset, many=True)
         return Response(serializer.data)

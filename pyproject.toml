@@ -10,6 +10,7 @@ python = "^3.6"
 djangorestframework = "^3.12.2"
 psycopg2 = "^2.8.6"
 drf-nested-routers = "^0.92.5"
+django-cors-headers = "^3.5.0"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.8.4"

@@ -12,7 +12,8 @@ class CardsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Card
         fields = ('id', 'deck', 'question', 'answer',
-                  'bucket', 'created_at', 'updated_at')
+                  'bucket', 'created_at', 'updated_at',
+                  'next_review_at')
 
 
 class CardsViewSet(viewsets.ModelViewSet):

@@ -1,3 +1,5 @@
+from django.utils import timezone
+
 from django.db import models
 from apps.decks.models import Deck
 from apps.utils.models import Timestamps
@@ -15,9 +17,8 @@ class Card(Timestamps):
         (5, '30 Days'),
     )
     bucket = models.IntegerField(choices=buckets, default=1)
-    next_review_at = models.DateTimeField(auto_now_add=True)
+    next_review_at = models.DateTimeField(default=timezone.now())
     last_reviewed_at = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
         return self.question
-    
